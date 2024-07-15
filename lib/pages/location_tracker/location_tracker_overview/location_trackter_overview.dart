@@ -1,7 +1,7 @@
-import 'package:family_tracker/pages/location_tracker_overview/user_list.dart';
+import 'package:family_tracker/pages/location_tracker/location_tracker_overview/user_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import '../flutter_map_widget.dart';
+import '../../flutter_map_widget.dart';
 
 class LocationTrackerOverview extends StatefulWidget {
   const LocationTrackerOverview({Key? key}) : super(key: key);

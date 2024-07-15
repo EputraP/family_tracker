@@ -1,4 +1,5 @@
-import 'package:family_tracker/pages/location_tracker_details/location_tracker_details.dart';
+import 'package:family_tracker/pages/location_tracker/location_tracker_details/location_tracker_details.dart';
+import 'package:family_tracker/pages/location_tracker/location_tracker_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -73,7 +74,8 @@ class UserListTile extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Get.to(() => LocationTrackerDetails());
+        Get.toNamed(LocationTrackerNavigation.locationDetail,
+            id: LocationTrackerNavigation.id);
       },
     );
   }

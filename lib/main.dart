@@ -1,5 +1,5 @@
 import 'package:family_tracker/main_wrapper.dart';
-import 'package:family_tracker/pages/location_tracker_overview/location_trackter_overview.dart';
+import 'package:family_tracker/pages/location_tracker/location_tracker_overview/location_trackter_overview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: MainWrapper(),
+      getPages: [],
     );
   }
 }
