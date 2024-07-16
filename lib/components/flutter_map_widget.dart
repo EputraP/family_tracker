@@ -54,7 +54,6 @@ class FlutterMapWidget extends StatelessWidget {
             )
           ],
         ));
-    ;
   }
 }
 
