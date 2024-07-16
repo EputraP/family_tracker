@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 abstract class LocationTrackerNavigation {
   LocationTrackerNavigation._();
   static const id = 0;

@@ -1,11 +1,10 @@
 import 'package:family_tracker/constans/colors_collection.dart';
 import 'package:family_tracker/components/flutter_map_widget.dart';
-import 'package:family_tracker/pages/location_tracker/location_tracker_details/dynamic_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LocationTrackerDetails extends StatefulWidget {
-  const LocationTrackerDetails({Key? key}) : super(key: key);
+  const LocationTrackerDetails({super.key});
 
   @override
   State<LocationTrackerDetails> createState() => _LocationTrackerDetailsState();
@@ -14,19 +13,18 @@ class LocationTrackerDetails extends StatefulWidget {
 class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
   final sheet = GlobalKey();
   final controller = DraggableScrollableController();
-  double _initialSheetChildSize = 0.047;
+  final double _initialSheetChildSize = 0.047;
   double _dragScrollSheetExtent = 0;
 
   double _widgetHeight = 0;
   double _fabPosition = 0;
-  double _fabPositionPadding = 10;
+  final double _fabPositionPadding = 10;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        // render the floating button on widget
         _fabPosition = _initialSheetChildSize * context.size!.height;
       });
     });
@@ -38,7 +36,7 @@ class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
       backgroundColor: ColorsCollection.locationTrackerColor,
       body: Stack(
         children: [
-          FlutterMapWidget(),
+          const FlutterMapWidget(),
           Positioned(
             width: MediaQuery.sizeOf(context).width,
             bottom: _fabPosition + _fabPositionPadding,
@@ -49,7 +47,7 @@ class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   FloatingActionButton(
-                    child: Icon(Icons.arrow_back),
+                    child: const Icon(Icons.arrow_back),
                     onPressed: () => Get.back(),
                   ),
                   Expanded(
@@ -61,19 +59,19 @@ class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
                   Column(
                     children: [
                       FloatingActionButton(
-                        child: Icon(
+                        backgroundColor: Colors.red,
+                        onPressed: () => print('Add'),
+                        child: const Icon(
                           Icons.sos_sharp,
                           color: Colors.white,
                         ),
-                        backgroundColor: Colors.red,
-                        onPressed: () => print('Add'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       FloatingActionButton(
-                        child: Icon(Icons.my_location),
                         onPressed: () => print('Add'),
+                        child: const Icon(Icons.my_location),
                       ),
                     ],
                   )
@@ -87,7 +85,6 @@ class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
                   _widgetHeight = context.size!.height;
                   _dragScrollSheetExtent = notification.extent;
 
-                  // Calculate FAB position based on parent widget height and DraggableScrollable position
                   _fabPosition = _dragScrollSheetExtent * _widgetHeight;
                 });
                 return true;
@@ -99,10 +96,6 @@ class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
                 minChildSize: 0.04,
                 expand: true,
                 snap: true,
-                // snapSizes: [
-                //   60 / constraints.maxHeight,
-                //   0.5,
-                // ],
                 controller: controller,
                 builder:
                     (BuildContext context, ScrollController scrollController) {
@@ -126,9 +119,6 @@ class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
                       controller: scrollController,
                       slivers: [
                         topButtonIndicator(),
-                        // SliverToBoxAdapter(
-                        //   child: widget.child,
-                        // ),
                       ],
                     ),
                   );
@@ -141,14 +131,12 @@ class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
 
   SliverToBoxAdapter topButtonIndicator() {
     return SliverToBoxAdapter(
-      child: Container(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-            Container(
-                child: Center(
-                    child: Wrap(children: <Widget>[
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Center(
+                child: Wrap(children: <Widget>[
               Container(
                   width: 100,
                   margin: const EdgeInsets.only(top: 10, bottom: 10),
@@ -158,8 +146,8 @@ class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   )),
-            ]))),
-          ])),
+            ])),
+          ]),
     );
   }
 }

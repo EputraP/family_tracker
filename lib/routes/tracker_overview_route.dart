@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TrackerOverviewRoute extends StatelessWidget {
+  const TrackerOverviewRoute({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Navigator(

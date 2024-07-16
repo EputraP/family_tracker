@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HealthTrackerRoute extends StatelessWidget {
+  const HealthTrackerRoute({super.key});
   @override
   Widget build(BuildContext context) {
     return Navigator(
@@ -13,7 +14,7 @@ class HealthTrackerRoute extends StatelessWidget {
         if (settings.name == HealthTrackerNavigation.healthOverview) {
           return GetPageRoute(
             routeName: HealthTrackerNavigation.healthOverview,
-            page: () => HealthTracker(),
+            page: () => const HealthTracker(),
           );
         }
       },
