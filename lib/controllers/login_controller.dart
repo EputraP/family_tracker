@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class LoginController extends GetxController {
+  var isObscure = true.obs;
+
   var userNameTextController = TextEditingController();
   var passwordTextController = TextEditingController();
 
@@ -19,4 +21,6 @@ class LoginController extends GetxController {
 
     super.onClose();
   }
+
+  void changeIsObscureVal() => isObscure.value = !isObscure.value;
 }

@@ -1,10 +1,10 @@
+import 'package:family_tracker/controllers/login_controller.dart';
 import 'package:family_tracker/main_wrapper.dart';
-import 'package:family_tracker/pages/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
-  TextEditingController _controller = TextEditingController();
+  LoginPage({super.key});
 
   final c = Get.put(LoginController());
 
@@ -25,23 +25,26 @@ class LoginPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: const Text("UserName"),
-              ),
               TextField(
                 controller: c.userNameTextController,
+                decoration: const InputDecoration(labelText: 'Username'),
               ),
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: const Text("Password"),
-              ),
-              TextField(
-                controller: c.passwordTextController,
-              ),
+              Obx(() => TextField(
+                    controller: c.passwordTextController,
+                    obscureText: c.isObscure.value,
+                    decoration: InputDecoration(
+                        labelText: 'Password',
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              c.changeIsObscureVal();
+                            },
+                            icon: Icon(c.isObscure.value
+                                ? Icons.visibility_off
+                                : Icons.visibility))),
+                  )),
               const SizedBox(
                 height: 20,
               ),
