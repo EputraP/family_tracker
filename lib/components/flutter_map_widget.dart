@@ -83,6 +83,6 @@ class _FlutterMapWidgetState extends State<FlutterMapWidget> {
 TileLayer get openStreetMapTileLayer => TileLayer(
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
       userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-      subdomains: ['a', 'b', 'c'],
-      tileBuilder: darkModeTileBuilder,
+      // subdomains: ['a', 'b', 'c'],
+      // tileBuilder: modet,
     );

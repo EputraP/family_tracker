@@ -1,16 +1,18 @@
+import 'package:family_tracker/constans/colors_collection.dart';
 import 'package:flutter/material.dart';
 
-class FamilyTreeTracker extends StatelessWidget {
+class TrackerOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text("Family Tree"),
-        ),
-      ),
+      backgroundColor: ColorsCollection.trackerOverviewColor,
       body: Center(
-        child: Text("Coming Soon"),
+        child: Text("Family Tracker Coming Soon"),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        shape: const CircleBorder(),
+        child: Icon(Icons.add),
       ),
     );
   }

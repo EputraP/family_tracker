@@ -13,8 +13,8 @@ abstract class HealthTrackerNavigation {
   static const healthOverview = '/health-overview';
 }
 
-abstract class FamilyTreeTrackerNavigation {
-  FamilyTreeTrackerNavigation._();
+abstract class TrackerOverviewNavigation {
+  TrackerOverviewNavigation._();
   static const id = 1;
-  static const familyTreeOverview = '/family-tree-overview';
+  static const trackerOverview = '/tracker-overview';
 }

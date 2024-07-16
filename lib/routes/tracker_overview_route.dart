@@ -3,17 +3,17 @@ import 'package:family_tracker/routes/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FamilyTreeTrackerRoute extends StatelessWidget {
+class TrackerOverviewRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      key: Get.nestedKey(FamilyTreeTrackerNavigation.id),
-      initialRoute: FamilyTreeTrackerNavigation.familyTreeOverview,
+      key: Get.nestedKey(TrackerOverviewNavigation.id),
+      initialRoute: TrackerOverviewNavigation.trackerOverview,
       onGenerateRoute: (settings) {
-        if (settings.name == FamilyTreeTrackerNavigation.familyTreeOverview) {
+        if (settings.name == TrackerOverviewNavigation.trackerOverview) {
           return GetPageRoute(
-            routeName: FamilyTreeTrackerNavigation.familyTreeOverview,
-            page: () => FamilyTreeTracker(),
+            routeName: TrackerOverviewNavigation.trackerOverview,
+            page: () => TrackerOverview(),
           );
         }
       },

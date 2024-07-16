@@ -1,3 +1,4 @@
+import 'package:family_tracker/constans/colors_collection.dart';
 import 'package:flutter/material.dart';
 
 class HealthTracker extends StatelessWidget {
@@ -6,13 +7,9 @@ class HealthTracker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text("Health Tracker"),
-        ),
-      ),
+      backgroundColor: ColorsCollection.healthTrackerColor,
       body: Center(
-        child: Text("Coming Soon"),
+        child: Text("Health Tracker Coming Soon"),
       ),
     );
   }

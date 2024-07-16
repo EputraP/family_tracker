@@ -9,13 +9,20 @@ class LocationTrackerRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Navigator(
       key: Get.nestedKey(LocationTrackerNavigation.id),
+      initialRoute: LocationTrackerNavigation.locationOverview,
       onGenerateRoute: (settings) {
-        if (settings.name == LocationTrackerNavigation.locationDetail) {
-          return GetPageRoute(
-            routeName: LocationTrackerNavigation.locationDetail,
-            page: () => LocationTrackerDetails(),
-          );
-        } else {
+        // if (settings.name == LocationTrackerNavigation.locationDetail) {
+        //   return GetPageRoute(
+        //     routeName: LocationTrackerNavigation.locationDetail,
+        //     page: () => LocationTrackerDetails(),
+        //   );
+        // } else {
+        //   return GetPageRoute(
+        //     routeName: LocationTrackerNavigation.locationOverview,
+        //     page: () => LocationTrackerOverview(),
+        //   );
+        // }
+        if (settings.name == LocationTrackerNavigation.locationOverview) {
           return GetPageRoute(
             routeName: LocationTrackerNavigation.locationOverview,
             page: () => LocationTrackerOverview(),

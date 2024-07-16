@@ -75,8 +75,7 @@ class UserListTile extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Get.toNamed(LocationTrackerNavigation.locationDetail,
-            id: LocationTrackerNavigation.id);
+        Get.toNamed(LocationTrackerNavigation.locationDetail);
       },
     );
   }
