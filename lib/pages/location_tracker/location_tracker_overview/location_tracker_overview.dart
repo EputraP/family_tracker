@@ -8,16 +8,16 @@ class LocationTrackerOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: ColorsCollection.locationTrackerColor,
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            UserList(),
-            SizedBox(
+            const UserList(),
+            const SizedBox(
               height: 20,
             ),
             Expanded(

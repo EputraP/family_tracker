@@ -36,7 +36,7 @@ class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
       backgroundColor: ColorsCollection.locationTrackerColor,
       body: Stack(
         children: [
-          const FlutterMapWidget(),
+          FlutterMapWidget(),
           Positioned(
             width: MediaQuery.sizeOf(context).width,
             bottom: _fabPosition + _fabPositionPadding,
