@@ -11,12 +11,16 @@ class HealthTrackerRoute extends StatelessWidget {
       key: Get.nestedKey(HealthTrackerNavigation.id),
       initialRoute: HealthTrackerNavigation.healthOverview,
       onGenerateRoute: (settings) {
-        if (settings.name == HealthTrackerNavigation.healthOverview) {
-          return GetPageRoute(
-            routeName: HealthTrackerNavigation.healthOverview,
-            page: () => const HealthTracker(),
-          );
-        }
+        // if (settings.name == HealthTrackerNavigation.healthOverview) {
+        //   return GetPageRoute(
+        //     routeName: HealthTrackerNavigation.healthOverview,
+        //     page: () => const HealthTracker(),
+        //   );
+        // }
+        return GetPageRoute(
+          routeName: HealthTrackerNavigation.healthOverview,
+          page: () => const HealthTracker(),
+        );
       },
     );
   }

@@ -12,12 +12,16 @@ class TrackerOverviewRoute extends StatelessWidget {
       key: Get.nestedKey(TrackerOverviewNavigation.id),
       initialRoute: TrackerOverviewNavigation.trackerOverview,
       onGenerateRoute: (settings) {
-        if (settings.name == TrackerOverviewNavigation.trackerOverview) {
-          return GetPageRoute(
-            routeName: TrackerOverviewNavigation.trackerOverview,
-            page: () => TrackerOverview(),
-          );
-        }
+        // if (settings.name == TrackerOverviewNavigation.trackerOverview) {
+        //   return GetPageRoute(
+        //     routeName: TrackerOverviewNavigation.trackerOverview,
+        //     page: () => TrackerOverview(),
+        //   );
+        // }
+        return GetPageRoute(
+          routeName: TrackerOverviewNavigation.trackerOverview,
+          page: () => TrackerOverview(),
+        );
       },
     );
   }
