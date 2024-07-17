@@ -13,6 +13,7 @@ class MainWrapper extends StatefulWidget {
 class _MainWrapperState extends State<MainWrapper> {
   //State class
   int _page = 1;
+  dynamic currentPageRoute = TrackerOverviewRoute();
   List<Color> backgroundScreenColor = [
     ColorsCollection.healthTrackerColor,
     ColorsCollection.trackerOverviewColor,
@@ -24,31 +25,32 @@ class _MainWrapperState extends State<MainWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: CurvedNavigationBar(
-          backgroundColor: backgroundScreenColor[_page],
-          index: 1,
-          height: 50,
-          key: _bottomNavigationKey,
-          items: const <Widget>[
-            Icon(Icons.health_and_safety_outlined, size: 17),
-            Icon(Icons.summarize, size: 17),
-            Icon(Icons.route_sharp, size: 17),
-          ],
-          onTap: (index) {
-            setState(() {
-              _page = index;
-            });
-          },
-        ),
-        body: SafeArea(
-          child: IndexedStack(
-            index: _page,
-            children: [
-              HealthTrackerRoute(),
-              TrackerOverviewRoute(),
-              LocationTrackerRoute(),
-            ],
-          ),
-        ));
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: backgroundScreenColor[_page],
+        index: 1,
+        height: 50,
+        key: _bottomNavigationKey,
+        items: const <Widget>[
+          Icon(Icons.health_and_safety_outlined, size: 17),
+          Icon(Icons.summarize, size: 17),
+          Icon(Icons.route_sharp, size: 17),
+        ],
+        onTap: (index) {
+          setState(() {
+            _page = index;
+            if (index == 0) {
+              currentPageRoute = HealthTrackerRoute();
+            } else if (index == 1) {
+              currentPageRoute = TrackerOverviewRoute();
+            } else if (index == 2) {
+              currentPageRoute = LocationTrackerRoute();
+            }
+          });
+        },
+      ),
+      body: SafeArea(
+        child: currentPageRoute,
+      ),
+    );
   }
 }
