@@ -7,7 +7,7 @@ import '../../../components/flutter_map_widget.dart';
 
 class LocationTrackerOverview extends StatelessWidget {
   LocationTrackerOverview({super.key});
-  var mapCOverview = Get.find<FlutterMapWidgetController>(tag: "Overview");
+  final mapCOverview = Get.find<FlutterMapWidgetController>(tag: "Overview");
 
   @override
   Widget build(BuildContext context) {
