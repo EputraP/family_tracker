@@ -1,4 +1,5 @@
-import 'package:family_tracker/pages/family_tree_tracker/family_tree_tracker.dart';
+import 'package:family_tracker/bindings/map_binding.dart';
+import 'package:family_tracker/pages/tracker_overview/tracker_overview.dart';
 import 'package:family_tracker/routes/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,7 @@ class TrackerOverviewRoute extends StatelessWidget {
         //     page: () => TrackerOverview(),
         //   );
         // }
+
         return GetPageRoute(
           routeName: TrackerOverviewNavigation.trackerOverview,
           page: () => TrackerOverview(),

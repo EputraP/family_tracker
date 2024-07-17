@@ -5,9 +5,17 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 
 class FlutterMapWidget extends StatelessWidget {
-  FlutterMapWidget({super.key});
-
-  final mapC = Get.put(FlutterMapWidgetController());
+  FlutterMapWidget({super.key, required this.mapC
+      // required this.markerSize,
+      // required this.currentZoom,
+      // required this.currentCenter,
+      // required this.mapController,
+      });
+  final FlutterMapWidgetController mapC;
+  // final double markerSize;
+  // final double currentZoom;
+  // final LatLng currentCenter;
+  // final MapController mapController;
 
   @override
   Widget build(BuildContext context) {

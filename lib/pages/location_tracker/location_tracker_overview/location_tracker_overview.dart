@@ -1,10 +1,13 @@
 import 'package:family_tracker/constans/colors_collection.dart';
+import 'package:family_tracker/controllers/flutter_map_widget_controller.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_overview/user_list.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../components/flutter_map_widget.dart';
 
 class LocationTrackerOverview extends StatelessWidget {
-  const LocationTrackerOverview({super.key});
+  LocationTrackerOverview({super.key});
+  var mapCOverview = Get.find<FlutterMapWidgetController>(tag: "Overview");
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,9 @@ class LocationTrackerOverview extends StatelessWidget {
               height: 20,
             ),
             Expanded(
-              child: FlutterMapWidget(),
+              child: FlutterMapWidget(
+                mapC: mapCOverview,
+              ),
             )
           ],
         ),

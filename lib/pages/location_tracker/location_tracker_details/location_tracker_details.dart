@@ -1,5 +1,6 @@
-import 'package:family_tracker/constans/colors_collection.dart';
 import 'package:family_tracker/components/flutter_map_widget.dart';
+import 'package:family_tracker/constans/colors_collection.dart';
+import 'package:family_tracker/controllers/flutter_map_widget_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,8 @@ class LocationTrackerDetails extends StatefulWidget {
 }
 
 class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
+  var mapCDetail = Get.find<FlutterMapWidgetController>(tag: "Detail");
+
   final sheet = GlobalKey();
   final controller = DraggableScrollableController();
   final double _initialSheetChildSize = 0.047;
@@ -36,7 +39,7 @@ class _LocationTrackerDetailsState extends State<LocationTrackerDetails> {
       backgroundColor: ColorsCollection.locationTrackerColor,
       body: Stack(
         children: [
-          FlutterMapWidget(),
+          FlutterMapWidget(mapC: mapCDetail),
           Positioned(
             width: MediaQuery.sizeOf(context).width,
             bottom: _fabPosition + _fabPositionPadding,

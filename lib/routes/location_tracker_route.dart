@@ -1,3 +1,4 @@
+import 'package:family_tracker/bindings/map_binding.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_overview/location_tracker_overview.dart';
 import 'package:family_tracker/routes/app_url.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,8 @@ class LocationTrackerRoute extends StatelessWidget {
         // }
         return GetPageRoute(
           routeName: LocationTrackerNavigation.locationOverview,
-          page: () => const LocationTrackerOverview(),
+          page: () => LocationTrackerOverview(),
+          binding: MapBindingOverview(),
         );
       },
     );
