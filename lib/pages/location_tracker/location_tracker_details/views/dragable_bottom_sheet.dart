@@ -1,10 +1,63 @@
+import 'package:family_tracker/constans/colors_collection.dart';
+import 'package:family_tracker/pages/location_tracker/location_tracker_details/controllers/draggable_bottom_sheet_controller.dart';
+import 'package:family_tracker/pages/location_tracker/location_tracker_details/views/top_botton_indicators.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class DragableBottomSheet extends StatelessWidget {
-  const DragableBottomSheet({Key? key}) : super(key: key);
+class DraggableBottomSheet extends StatelessWidget {
+  DraggableBottomSheet({super.key});
+
+  final draggableBottomC = Get.find<DraggableBottomSheetController>();
+  final sheet = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return NotificationListener<DraggableScrollableNotification>(
+        onNotification: (DraggableScrollableNotification notification) {
+          var widgetHeight = context.size!.height;
+          var dragScrollSheetExtent = notification.extent;
+          var fabPosition = dragScrollSheetExtent * widgetHeight;
+
+          draggableBottomC.changeAttributesVal(
+              widgetHeightInput: widgetHeight,
+              dragscrollSheetExtentInput: dragScrollSheetExtent,
+              fabPositionInput: fabPosition);
+
+          return true;
+        },
+        child: DraggableScrollableSheet(
+          key: sheet,
+          initialChildSize: 0.04,
+          maxChildSize: 0.5,
+          minChildSize: 0.04,
+          expand: true,
+          snap: true,
+          controller: draggableBottomC.controller,
+          builder: (BuildContext context, ScrollController scrollController) {
+            return DecoratedBox(
+              decoration: const BoxDecoration(
+                color: ColorsCollection.locationTrackerColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.yellow,
+                    blurRadius: 10,
+                    spreadRadius: 1,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(22),
+                  topRight: Radius.circular(22),
+                ),
+              ),
+              child: CustomScrollView(
+                controller: scrollController,
+                slivers: [
+                  TopBottonIndicators(),
+                ],
+              ),
+            );
+          },
+        ));
   }
 }

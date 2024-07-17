@@ -1,4 +1,4 @@
-import 'package:family_tracker/pages/login_page/login_page.dart';
+import 'package:family_tracker/pages/login_page/views/login_page.dart';
 import 'package:family_tracker/routes/app_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
