@@ -50,8 +50,8 @@ class LoginPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  if (c.userNameTextController.text == "Putra" &&
-                      c.passwordTextController.text == "password123456") {
+                  if (c.validateUserLogin(c.userNameTextController.text,
+                      c.passwordTextController.text)) {
                     Get.to(MainWrapper());
                   }
                 },

@@ -23,4 +23,11 @@ class LoginController extends GetxController {
   }
 
   void changeIsObscureVal() => isObscure.value = !isObscure.value;
+
+  bool validateUserLogin(userName, pass) {
+    if (userName == "Putra" && pass == "password123456") {
+      return true;
+    }
+    return false;
+  }
 }
