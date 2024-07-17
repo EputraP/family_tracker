@@ -1,4 +1,3 @@
-import 'package:family_tracker/bindings/map_binding.dart';
 import 'package:family_tracker/pages/tracker_overview/tracker_overview.dart';
 import 'package:family_tracker/routes/app_url.dart';
 import 'package:flutter/material.dart';
