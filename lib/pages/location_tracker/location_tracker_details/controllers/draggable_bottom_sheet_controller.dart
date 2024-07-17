@@ -12,6 +12,7 @@ class DraggableBottomSheetController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
+    super.onInit();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       var context = Get.context;
       fabPosition.value = initialSheetChildSize.value * context!.size!.height;

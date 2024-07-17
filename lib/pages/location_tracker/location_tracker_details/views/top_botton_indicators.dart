@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TopBottonIndicators extends StatelessWidget {
-  TopBottonIndicators({super.key});
+  const TopBottonIndicators({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,5 @@ class TopBottonIndicators extends StatelessWidget {
             ])),
           ]),
     );
-    ;
   }
 }
