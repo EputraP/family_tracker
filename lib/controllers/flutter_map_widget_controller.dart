@@ -8,7 +8,7 @@ class FlutterMapWidgetController extends GetxController {
   var markerSize = 10.0.obs;
   var currentZoom = 6.0.obs;
   var tag = "";
-  var currentCenter = const LatLng(-6.955470354750406, 107.70999737725637).obs;
+  var currentCenter = const LatLng(-7.392946540801525, 109.94206283417289).obs;
   var mapData = Rx<List<Marker>>([]);
   var mapController = MapController();
   var count = 0.obs;
