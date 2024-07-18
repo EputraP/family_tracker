@@ -1,5 +1,4 @@
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/controllers/draggable_bottom_sheet_controller.dart';
-import 'package:family_tracker/pages/location_tracker/location_tracker_details/views/dragable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
