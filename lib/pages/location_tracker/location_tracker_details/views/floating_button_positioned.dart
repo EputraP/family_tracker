@@ -32,12 +32,15 @@ class FloatingButtonPositioned extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    FloatingActionButton(
-                      backgroundColor: Colors.red,
-                      onPressed: () => print('Add'),
-                      child: const Icon(
-                        IconCollection.sosIcon,
-                        color: Colors.white,
+                    Visibility(
+                      visible: true,
+                      child: FloatingActionButton(
+                        backgroundColor: false ? Colors.red : Colors.white,
+                        onPressed: () => print('Add'),
+                        child: const Icon(
+                          IconCollection.sosIcon,
+                          color: false ? Colors.white : Colors.red,
+                        ),
                       ),
                     ),
                     const SizedBox(
