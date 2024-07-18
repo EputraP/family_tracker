@@ -1,3 +1,4 @@
+import 'package:family_tracker/constans/icon_collection.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/controllers/draggable_bottom_sheet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +36,7 @@ class FloatingButtonPositioned extends StatelessWidget {
                       backgroundColor: Colors.red,
                       onPressed: () => print('Add'),
                       child: const Icon(
-                        Icons.sos_sharp,
+                        IconCollection.sosIcon,
                         color: Colors.white,
                       ),
                     ),

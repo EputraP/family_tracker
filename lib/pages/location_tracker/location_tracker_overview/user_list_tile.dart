@@ -1,4 +1,5 @@
 import 'package:family_tracker/constans/colors_collection.dart';
+import 'package:family_tracker/constans/icon_collection.dart';
 import 'package:family_tracker/routes/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,44 +31,56 @@ class UserListTile extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Eka",
-                      style: TextStyle(fontSize: 12, color: Colors.white),
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        height: 18,
-                        width: 60,
-                        color: ColorsCollection.locationTrackerMoving,
-                        child: const Center(
-                          child: Text(
-                            "Moving",
+                  padding: const EdgeInsets.all(5.0),
+                  child: Stack(
+                    children: [
+                      const Positioned(
+                          right: 0,
+                          top: 0,
+                          child: Icon(
+                            true ? IconCollection.sosIcon : null,
+                            size: 30,
+                            color: Colors.red,
+                          )),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Eka",
+                            style: TextStyle(fontSize: 12, color: Colors.white),
+                          ),
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              height: 18,
+                              width: 60,
+                              color: ColorsCollection.locationTrackerMoving,
+                              child: const Center(
+                                child: Text(
+                                  "Moving",
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.white),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          const Text(
+                            "Jl.oilenfoiwefoinweoifnowiefn",
                             style: TextStyle(fontSize: 12, color: Colors.white),
                             overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
+                          )
+                        ],
                       ),
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    const Text(
-                      "Jl.oilenfoiwefoinweoifnowiefn",
-                      style: TextStyle(fontSize: 12, color: Colors.white),
-                      overflow: TextOverflow.ellipsis,
-                    )
-                  ],
-                ),
-              ),
+                    ],
+                  )),
             )
           ],
         ),

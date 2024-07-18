@@ -1,4 +1,5 @@
 import 'package:family_tracker/constans/colors_collection.dart';
+import 'package:family_tracker/constans/icon_collection.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/controllers/draggable_bottom_sheet_controller.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/views/photo_container.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/views/top_botton_indicators.dart';
@@ -56,7 +57,7 @@ class DraggableBottomSheet extends StatelessWidget {
               child: CustomScrollView(
                 controller: scrollController,
                 slivers: [
-                  TopBottonIndicators(),
+                  const TopBottonIndicators(),
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
@@ -65,22 +66,34 @@ class DraggableBottomSheet extends StatelessWidget {
                         child: LayoutBuilder(
                           builder: (BuildContext context,
                               BoxConstraints constraints) {
-                            return Obx(
-                              () => Row(
-                                children: [
-                                  PhotoContainer(maxChildSize: maxChildSize),
-                                  Container(
-                                    width: 2,
-                                    height:
-                                        draggableBottomC.widgetHeight.value *
-                                                maxChildSize -
-                                            60,
-                                    color: Colors.grey,
-                                  ),
-                                  UserDataContainer(maxChildSize: maxChildSize)
-                                ],
-                              ),
-                            );
+                            return Obx(() => Stack(
+                                  children: [
+                                    const Positioned(
+                                        right: 20,
+                                        top: 0,
+                                        child: Icon(
+                                          true ? IconCollection.sosIcon : null,
+                                          size: 30,
+                                          color: Colors.red,
+                                        )),
+                                    Row(
+                                      children: [
+                                        PhotoContainer(
+                                            maxChildSize: maxChildSize),
+                                        Container(
+                                          width: 2,
+                                          height: draggableBottomC
+                                                      .widgetHeight.value *
+                                                  maxChildSize -
+                                              60,
+                                          color: Colors.grey,
+                                        ),
+                                        UserDataContainer(
+                                            maxChildSize: maxChildSize)
+                                      ],
+                                    ),
+                                  ],
+                                ));
                           },
                         ),
                       ),
