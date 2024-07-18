@@ -68,14 +68,17 @@ class DraggableBottomSheet extends StatelessWidget {
                               BoxConstraints constraints) {
                             return Obx(() => Stack(
                                   children: [
-                                    const Positioned(
-                                        right: 20,
-                                        top: 0,
-                                        child: Icon(
-                                          true ? IconCollection.sosIcon : null,
-                                          size: 30,
-                                          color: Colors.red,
-                                        )),
+                                    const Visibility(
+                                      visible: true,
+                                      child: Positioned(
+                                          right: 20,
+                                          top: 0,
+                                          child: Icon(
+                                            IconCollection.sosIcon,
+                                            size: 30,
+                                            color: Colors.red,
+                                          )),
+                                    ),
                                     Row(
                                       children: [
                                         PhotoContainer(

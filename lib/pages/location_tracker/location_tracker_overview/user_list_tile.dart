@@ -34,14 +34,17 @@ class UserListTile extends StatelessWidget {
                   padding: const EdgeInsets.all(5.0),
                   child: Stack(
                     children: [
-                      const Positioned(
-                          right: 0,
-                          top: 0,
-                          child: Icon(
-                            true ? IconCollection.sosIcon : null,
-                            size: 30,
-                            color: Colors.red,
-                          )),
+                      const Visibility(
+                        visible: true,
+                        child: Positioned(
+                            right: 0,
+                            top: 0,
+                            child: Icon(
+                              IconCollection.sosIcon,
+                              size: 30,
+                              color: Colors.red,
+                            )),
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
