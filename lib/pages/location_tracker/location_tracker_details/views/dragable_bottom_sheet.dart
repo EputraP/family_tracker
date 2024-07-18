@@ -1,6 +1,8 @@
 import 'package:family_tracker/constans/colors_collection.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/controllers/draggable_bottom_sheet_controller.dart';
+import 'package:family_tracker/pages/location_tracker/location_tracker_details/views/photo_container.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/views/top_botton_indicators.dart';
+import 'package:family_tracker/pages/location_tracker/location_tracker_details/views/user_data_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +11,7 @@ class DraggableBottomSheet extends StatelessWidget {
 
   final draggableBottomC = Get.find<DraggableBottomSheetController>();
   final sheet = GlobalKey();
+  final maxChildSize = 0.2;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class DraggableBottomSheet extends StatelessWidget {
         child: DraggableScrollableSheet(
           key: sheet,
           initialChildSize: 0.04,
-          maxChildSize: 0.5,
+          maxChildSize: maxChildSize,
           minChildSize: 0.04,
           expand: true,
           snap: true,
@@ -54,6 +57,39 @@ class DraggableBottomSheet extends StatelessWidget {
                 controller: scrollController,
                 slivers: [
                   TopBottonIndicators(),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 11, right: 10),
+                      child: Container(
+                        width: double.infinity,
+                        child: LayoutBuilder(
+                          builder: (BuildContext context,
+                              BoxConstraints constraints) {
+                            return Obx(() => Wrap(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        PhotoContainer(
+                                            maxChildSize: maxChildSize),
+                                        Container(
+                                          width: 2,
+                                          height: draggableBottomC
+                                                      .widgetHeight.value *
+                                                  maxChildSize -
+                                              60,
+                                          color: Colors.grey,
+                                        ),
+                                        UserDataContainer(
+                                            maxChildSize: maxChildSize)
+                                      ],
+                                    ),
+                                  ],
+                                ));
+                          },
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             );
