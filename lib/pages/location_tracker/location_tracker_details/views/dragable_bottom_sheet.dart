@@ -59,32 +59,28 @@ class DraggableBottomSheet extends StatelessWidget {
                   TopBottonIndicators(),
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 11, right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Container(
                         width: double.infinity,
                         child: LayoutBuilder(
                           builder: (BuildContext context,
                               BoxConstraints constraints) {
-                            return Obx(() => Wrap(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        PhotoContainer(
-                                            maxChildSize: maxChildSize),
-                                        Container(
-                                          width: 2,
-                                          height: draggableBottomC
-                                                      .widgetHeight.value *
-                                                  maxChildSize -
-                                              60,
-                                          color: Colors.grey,
-                                        ),
-                                        UserDataContainer(
-                                            maxChildSize: maxChildSize)
-                                      ],
-                                    ),
-                                  ],
-                                ));
+                            return Obx(
+                              () => Row(
+                                children: [
+                                  PhotoContainer(maxChildSize: maxChildSize),
+                                  Container(
+                                    width: 2,
+                                    height:
+                                        draggableBottomC.widgetHeight.value *
+                                                maxChildSize -
+                                            60,
+                                    color: Colors.grey,
+                                  ),
+                                  UserDataContainer(maxChildSize: maxChildSize)
+                                ],
+                              ),
+                            );
                           },
                         ),
                       ),

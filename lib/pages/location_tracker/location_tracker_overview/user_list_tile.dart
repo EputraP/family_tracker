@@ -1,3 +1,4 @@
+import 'package:family_tracker/constans/colors_collection.dart';
 import 'package:family_tracker/routes/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ class UserListTile extends StatelessWidget {
     return InkWell(
       child: Container(
         width: 220,
-        color: Colors.lightBlue,
+        color: ColorsCollection.locationTrackerOnline,
         child: Row(
           children: [
             Container(
@@ -36,7 +37,7 @@ class UserListTile extends StatelessWidget {
                   children: [
                     const Text(
                       "Eka",
-                      style: TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 12, color: Colors.white),
                     ),
                     const SizedBox(
                       height: 3,
@@ -46,11 +47,11 @@ class UserListTile extends StatelessWidget {
                       child: Container(
                         height: 18,
                         width: 60,
-                        color: Colors.grey,
+                        color: ColorsCollection.locationTrackerMoving,
                         child: const Center(
                           child: Text(
-                            "Idle",
-                            style: TextStyle(fontSize: 12),
+                            "Moving",
+                            style: TextStyle(fontSize: 12, color: Colors.white),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -61,7 +62,7 @@ class UserListTile extends StatelessWidget {
                     ),
                     const Text(
                       "Jl.oilenfoiwefoinweoifnowiefn",
-                      style: TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 12, color: Colors.white),
                       overflow: TextOverflow.ellipsis,
                     )
                   ],
