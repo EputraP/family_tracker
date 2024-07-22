@@ -1,5 +1,6 @@
 import 'package:family_tracker/constans/colors_collection.dart';
 import 'package:family_tracker/controllers/flutter_map_widget_controller.dart';
+import 'package:family_tracker/controllers/location_controller.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_overview/user_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,35 +10,11 @@ class LocationTrackerOverview extends StatelessWidget {
   LocationTrackerOverview({super.key});
   final FlutterMapWidgetController mapCOverview =
       Get.find<FlutterMapWidgetController>(tag: "Overview");
+  final LocationController locationController =
+      Get.find<LocationController>(tag: "Overview");
 
   @override
   Widget build(BuildContext context) {
-    // mapCOverview.updateMapData(
-    //   [
-    //     Marker(
-    //       point: const LatLng(-6.955470354750406, 107.70999737725637),
-    //       width: mapCOverview.markerSize.value,
-    //       height: mapCOverview.markerSize.value,
-    //       alignment: Alignment.center,
-    //       child: Icon(
-    //         Icons.circle_sharp,
-    //         size: mapCOverview.markerSize.value,
-    //         color: Colors.blue,
-    //       ),
-    //     ),
-    //     Marker(
-    //       point: const LatLng(-7.796192410193114, 110.37038175433241),
-    //       width: mapCOverview.markerSize.value,
-    //       height: mapCOverview.markerSize.value,
-    //       alignment: Alignment.center,
-    //       child: Icon(
-    //         Icons.circle_sharp,
-    //         size: mapCOverview.markerSize.value,
-    //         color: Colors.red,
-    //       ),
-    //     )
-    //   ],
-    // );
     return Scaffold(
       backgroundColor: ColorsCollection.locationTrackerColor,
       resizeToAvoidBottomInset: false,
@@ -50,6 +27,36 @@ class LocationTrackerOverview extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            Text("Accessing Location"),
+            Obx(() {
+              return locationController.isAccessingLocation.value
+                  ? const Column(
+                      children: [
+                        CircularProgressIndicator(),
+                        Text("Accessing Location")
+                      ],
+                    )
+                  : locationController.errorDescription.value.isNotEmpty ||
+                          locationController.userLocation.value == null
+                      ? Column(
+                          children: [
+                            Text(locationController.errorDescription.value),
+                          ],
+                        )
+                      : Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Latitude: ${locationController.userLocation.value?.latitude} ",
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
+                            Text(
+                              "Longitude :  ${locationController.userLocation.value?.longitude} ",
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            )
+                          ],
+                        );
+            }),
             Expanded(
               child: FlutterMapWidget(
                 mapC: mapCOverview,
