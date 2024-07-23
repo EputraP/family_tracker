@@ -1,4 +1,3 @@
-import 'package:family_tracker/services/location_service.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 
@@ -15,11 +14,4 @@ class LocationController extends GetxController {
   void updateUserLocation(LocationData data) {
     userLocation.value = data;
   }
-
-  // @override
-  // void onInit() {
-  //   // TODO: implement onInit
-  //   super.onInit();
-
-  // }
 }

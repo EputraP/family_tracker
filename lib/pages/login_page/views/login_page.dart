@@ -1,15 +1,13 @@
 import 'package:family_tracker/controllers/user_auth_controller.dart';
 import 'package:family_tracker/main_wrapper.dart';
-import 'package:family_tracker/pages/login_page/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends GetView<LoginController> {
+class LoginPage extends GetView<UserAuthController> {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final c = Get.find<LoginController>();
     return Scaffold(
         body: SafeArea(
       child: Center(
