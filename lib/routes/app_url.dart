@@ -1,3 +1,8 @@
+abstract class LoginPageNavigation {
+  LoginPageNavigation._();
+  static const loginPage = '/login';
+}
+
 abstract class LocationTrackerNavigation {
   LocationTrackerNavigation._();
   static const id = 0;

@@ -1,3 +1,4 @@
+import 'package:family_tracker/controllers/user_auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,8 @@ class LoginController extends GetxController {
 
   var userNameTextController = TextEditingController();
   var passwordTextController = TextEditingController();
+
+  final userAuthController = Get.find<UserAuthController>();
 
   @override
   void onInit() {
@@ -25,6 +28,8 @@ class LoginController extends GetxController {
   void changeIsObscureVal() => isObscure.value = !isObscure.value;
 
   bool validateUserLogin(userName, pass) {
+    userAuthController.login(userName, pass);
+    print('access token: ${userAuthController.accessToken.value}');
     if (userName == "Putra" && pass == "password123456") {
       return true;
     }
