@@ -4,13 +4,12 @@ import 'package:family_tracker/pages/login_page/controllers/login_controller.dar
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.find<UserAuthController>();
-    final c = Get.find<LoginController>();
+    // final c = Get.find<LoginController>();
     return Scaffold(
         body: SafeArea(
       child: Center(
@@ -27,22 +26,22 @@ class LoginPage extends StatelessWidget {
                 height: 30,
               ),
               TextField(
-                controller: c.userNameTextController,
+                controller: controller.userNameTextController,
                 decoration: const InputDecoration(labelText: 'Username'),
               ),
               const SizedBox(
                 height: 10,
               ),
               Obx(() => TextField(
-                    controller: c.passwordTextController,
-                    obscureText: c.isObscure.value,
+                    controller: controller.passwordTextController,
+                    obscureText: controller.isObscure.value,
                     decoration: InputDecoration(
                         labelText: 'Password',
                         suffixIcon: IconButton(
                             onPressed: () {
-                              c.changeIsObscureVal();
+                              controller.changeIsObscureVal();
                             },
-                            icon: Icon(c.isObscure.value
+                            icon: Icon(controller.isObscure.value
                                 ? Icons.visibility_off
                                 : Icons.visibility))),
                   )),
@@ -51,8 +50,9 @@ class LoginPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  if (c.validateUserLogin(c.userNameTextController.text,
-                      c.passwordTextController.text)) {
+                  if (controller.validateUserLogin(
+                      controller.userNameTextController.text,
+                      controller.passwordTextController.text)) {
                     Get.to(MainWrapper());
                   }
                 },
