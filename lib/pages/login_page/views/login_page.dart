@@ -47,8 +47,8 @@ class LoginPage extends GetView<UserAuthController> {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () {
-                  if (controller.validateUserLogin(
+                onPressed: () async {
+                  if (await controller.validateUserLogin(
                       controller.userNameTextController.text,
                       controller.passwordTextController.text)) {
                     Get.to(MainWrapper());
