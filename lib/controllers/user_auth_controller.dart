@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:family_tracker/providers/user_provider.dart';
@@ -9,6 +10,7 @@ class UserAuthController extends GetxController {
   var isObscure = true.obs;
   var refreshToken = "".obs;
   var accessToken = "".obs;
+  var isAuth = false.obs;
 
   var userNameTextController = TextEditingController();
   var passwordTextController = TextEditingController();
@@ -18,6 +20,14 @@ class UserAuthController extends GetxController {
     super.onInit();
     userNameTextController = TextEditingController();
     passwordTextController = TextEditingController();
+
+    Timer.periodic(const Duration(seconds: 30), (timer) {
+      if (refreshToken.value != "") {
+        Map<String, dynamic> decodedToken =
+            JwtDecoder.decode(accessToken.value);
+        print('access token: ${jsonEncode(decodedToken)}');
+      }
+    });
   }
 
   @override
@@ -29,6 +39,13 @@ class UserAuthController extends GetxController {
   }
 
   void changeIsObscureVal() => isObscure.value = !isObscure.value;
+
+  void changeIsAuthVal(val) => isAuth.value = val;
+
+  void emptyToken() {
+    refreshToken.value = "";
+    accessToken.value = "";
+  }
 
   void snackBarError(String msg) {
     Get.snackbar(
@@ -46,6 +63,7 @@ class UserAuthController extends GetxController {
           var data = response.body["data"] as Map<String, dynamic>;
           accessToken.value = data["access_token"];
           refreshToken.value = data["refresh_token"];
+          isAuth.value = true;
 
           // change(data, status: RxStatus.success());
           print('access token API: ${data["access_token"]}');
@@ -63,11 +81,8 @@ class UserAuthController extends GetxController {
   Future<bool> validateUserLogin(userName, pass) async {
     print('access token: executed');
     var val = await login(userName, pass);
-    print('access token val: ${jsonEncode(val)}');
-    Map<String, dynamic> decodedToken = JwtDecoder.decode(accessToken.value);
-    print('access token: executed after');
-    print('access token: ${jsonEncode(decodedToken)}');
-    if (val != "") {
+
+    if (refreshToken.value != "") {
       return true;
     }
     return false;

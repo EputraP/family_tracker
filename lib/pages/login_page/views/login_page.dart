@@ -51,7 +51,10 @@ class LoginPage extends GetView<UserAuthController> {
                   if (await controller.validateUserLogin(
                       controller.userNameTextController.text,
                       controller.passwordTextController.text)) {
-                    Get.to(MainWrapper());
+                    // Get.to(MainWrapper());
+                    controller.userNameTextController.clear();
+                    controller.passwordTextController.clear();
+                    Get.off(MainWrapper());
                   }
                 },
                 style: const ButtonStyle(
