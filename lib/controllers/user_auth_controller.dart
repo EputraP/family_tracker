@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:family_tracker/providers/user_provider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -90,8 +88,7 @@ class UserAuthController extends GetxController {
   }
 
   Future<bool> validateUserLogin(userName, pass) async {
-    print('access token: executed');
-    var val = await login(userName, pass);
+    await login(userName, pass);
 
     if (refreshToken.value != "") {
       return true;
