@@ -36,7 +36,8 @@ class FabCircularMenu extends StatelessWidget {
             Icons.logout,
             color: Colors.white,
           ),
-          onClick: () {
+          onClick: () async {
+            await userAuthController.logout();
             userAuthController.changeIsAuthVal(false);
             userAuthController.emptyToken();
             Get.to(const LoginPage());

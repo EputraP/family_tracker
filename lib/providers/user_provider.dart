@@ -8,4 +8,8 @@ class UserProvider extends GetConnect {
     final body = json.encode({"username": username, "pass": password});
     return await post('${ApiConstant.userAuth}/login', body);
   }
+
+  Future<Response> getLogoutUser(String userid) async {
+    return await get('${ApiConstant.userAuth}/logout/$userid');
+  }
 }
