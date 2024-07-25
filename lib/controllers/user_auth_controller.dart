@@ -23,13 +23,12 @@ class UserAuthController extends GetxController {
     userNameTextController = TextEditingController();
     passwordTextController = TextEditingController();
 
-    Timer.periodic(const Duration(seconds: 30), (timer) {
+    Timer.periodic(const Duration(seconds: 30), (timer) async {
       if (refreshToken.value != "") {
-        Map<String, dynamic> decodedToken =
-            JwtDecoder.decode(accessToken.value);
-        print('access token: ${jsonEncode(decodedToken)}');
-        print('username: ${userName.value}');
-        print('userid: ${userId.value}');
+        // Map<String, dynamic> decodedToken =
+        //     JwtDecoder.decode(accessToken.value);
+        await UserProvider()
+            .putSetIsOnline(int.parse(userId.value), refreshToken.value);
       }
     });
   }
@@ -63,7 +62,6 @@ class UserAuthController extends GetxController {
     try {
       await UserProvider().postLoginUser(name, password).then((response) {
         if (response.statusCode == 200) {
-          print('access token API: executed');
           var data = response.body["data"] as Map<String, dynamic>;
           accessToken.value = data["access_token"];
           refreshToken.value = data["refresh_token"];
@@ -73,9 +71,7 @@ class UserAuthController extends GetxController {
               JwtDecoder.decode(data["refresh_token"]);
           userName.value = decodedRefreshToken["username"];
           userId.value = decodedRefreshToken["user_id"];
-          // change(data, status: RxStatus.success());
-          print('access token API Decoded: ${decodedRefreshToken}');
-          print('access token API: ${data["access_token"]}');
+
           return data["refresh_token"];
         }
       }, onError: (_) {
