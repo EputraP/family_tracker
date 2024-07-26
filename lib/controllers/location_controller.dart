@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:family_tracker/controllers/user_auth_controller.dart';
 import 'package:family_tracker/providers/user_location_provider.dart';
-import 'package:family_tracker/services/location_service.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 
