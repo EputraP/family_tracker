@@ -1,15 +1,14 @@
 import 'package:family_tracker/controllers/location_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart' as handler;
 
 class LocationService {
-  LocationService.init() {
-    _location.enableBackgroundMode(enable: true);
-  }
+  LocationService.init();
   static LocationService instance = LocationService.init();
 
-  Location _location = Location();
+  final Location _location = Location();
 
   Future<bool> checkForServiceAvaibility() async {
     bool isEnabled = await _location.serviceEnabled();
@@ -35,17 +34,17 @@ class LocationService {
       return false;
     }
     if (status == PermissionStatus.deniedForever) {
-      // SnackBar(
-      //   content: const Text(
-      //       "Permission Needed, We use permission to get your location"),
-      //   action: SnackBarAction(
-      //     label: "Setting",
-      //     onPressed: () {
-      //       handler.openAppSettings();
-      //     },
-      //     // onPressed: () {},
-      //   ),
-      // );
+      SnackBar(
+        content: const Text(
+            "Permission Needed, We use permission to get your location"),
+        action: SnackBarAction(
+          label: "Setting",
+          onPressed: () {
+            handler.openAppSettings();
+          },
+          // onPressed: () {},
+        ),
+      );
 
       Get.snackbar("Permission Needed",
           "We use permission to get your location in order to give your service",

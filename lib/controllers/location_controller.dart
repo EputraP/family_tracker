@@ -10,20 +10,29 @@ class LocationController extends GetxController {
 
   final Rx<LocationData?> userLocation = Rx<LocationData?>(null);
   final userAuthController = Get.find<UserAuthController>();
-  final location = Location();
 
   @override
   void onInit() {
+    final location = Location();
+    location.enableBackgroundMode(enable: true);
     Timer.periodic(const Duration(seconds: 15), (timer) async {
       location.onLocationChanged.listen((LocationData currentLocation) {
         updateUserLocation(currentLocation);
       });
-
-      await UserLocationProvider().putUpdateUserLocation(
-          int.parse(userAuthController.userId.value),
-          (userLocation.value?.latitude).toString(),
-          (userLocation.value?.longitude).toString(),
-          userAuthController.refreshToken.value);
+      if (userAuthController.userId.value != "" &&
+          (userLocation.value?.latitude).toString() != "" &&
+          (userLocation.value?.longitude).toString() != "") {
+        await UserLocationProvider()
+            .putUpdateUserLocation(
+                int.parse(userAuthController.userId.value),
+                (userLocation.value?.latitude).toString(),
+                (userLocation.value?.longitude).toString(),
+                userAuthController.refreshToken.value)
+            .then((value) {
+          var data = value.body["data"] as Map<String, dynamic>;
+          print(data);
+        });
+      }
     });
     super.onInit();
   }

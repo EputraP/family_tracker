@@ -8,10 +8,6 @@ class MapBindingOverview implements Bindings {
   @override
   void dependencies() {
     Get.put(FlutterMapWidgetController("Overview"), tag: "Overview");
-
-    final LocationController locationController =
-        Get.put(LocationController(), tag: "Overview");
-    LocationService.instance.getUserLocation(controller: locationController);
   }
 }
 
