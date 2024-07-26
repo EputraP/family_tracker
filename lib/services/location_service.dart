@@ -4,10 +4,13 @@ import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart' as handler;
 
 class LocationService {
-  LocationService.init();
+  LocationService.init() {
+    _location.enableBackgroundMode(enable: true);
+  }
   static LocationService instance = LocationService.init();
 
   Location _location = Location();
+
   Future<bool> checkForServiceAvaibility() async {
     bool isEnabled = await _location.serviceEnabled();
     if (isEnabled) {
