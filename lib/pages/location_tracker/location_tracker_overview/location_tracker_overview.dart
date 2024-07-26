@@ -10,8 +10,7 @@ class LocationTrackerOverview extends StatelessWidget {
   LocationTrackerOverview({super.key});
   final FlutterMapWidgetController mapCOverview =
       Get.find<FlutterMapWidgetController>(tag: "Overview");
-  final LocationController locationController =
-      Get.find<LocationController>(tag: "Overview");
+  final LocationController locationController = Get.find<LocationController>();
 
   @override
   Widget build(BuildContext context) {

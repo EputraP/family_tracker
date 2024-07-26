@@ -7,8 +7,7 @@ class LoginBinding implements Bindings {
   @override
   void dependencies() {
     Get.put(UserAuthController());
-    final LocationController locationController =
-        Get.put(LocationController(), tag: "Overview");
+    final LocationController locationController = Get.put(LocationController());
     LocationService.instance.getUserLocation(controller: locationController);
   }
 }
