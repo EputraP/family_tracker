@@ -26,36 +26,36 @@ class LocationTrackerOverview extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Text("Accessing Location"),
-            Obx(() {
-              return locationController.isAccessingLocation.value
-                  ? const Column(
-                      children: [
-                        CircularProgressIndicator(),
-                        Text("Accessing Location")
-                      ],
-                    )
-                  : locationController.errorDescription.value.isNotEmpty ||
-                          locationController.userLocation.value == null
-                      ? Column(
-                          children: [
-                            Text(locationController.errorDescription.value),
-                          ],
-                        )
-                      : Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              "Latitude: ${locationController.userLocation.value?.latitude} ",
-                              style: Theme.of(context).textTheme.headlineSmall,
-                            ),
-                            Text(
-                              "Longitude :  ${locationController.userLocation.value?.longitude} ",
-                              style: Theme.of(context).textTheme.headlineSmall,
-                            )
-                          ],
-                        );
-            }),
+            // Text("Accessing Location"),
+            // Obx(() {
+            //   return locationController.isAccessingLocation.value
+            //       ? const Column(
+            //           children: [
+            //             CircularProgressIndicator(),
+            //             Text("Accessing Location")
+            //           ],
+            //         )
+            //       : locationController.errorDescription.value.isNotEmpty ||
+            //               locationController.userLocation.value == null
+            //           ? Column(
+            //               children: [
+            //                 Text(locationController.errorDescription.value),
+            //               ],
+            //             )
+            //           : Column(
+            //               mainAxisSize: MainAxisSize.min,
+            //               children: [
+            //                 Text(
+            //                   "Latitude: ${locationController.userLocation.value?.latitude} ",
+            //                   style: Theme.of(context).textTheme.headlineSmall,
+            //                 ),
+            //                 Text(
+            //                   "Longitude :  ${locationController.userLocation.value?.longitude} ",
+            //                   style: Theme.of(context).textTheme.headlineSmall,
+            //                 )
+            //               ],
+            //             );
+            // }),
             Expanded(
               child: FlutterMapWidget(
                 mapC: mapCOverview,
