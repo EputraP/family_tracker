@@ -79,7 +79,33 @@ class FlutterMapWidgetController extends GetxController {
             .then((response) {
           var data = response.body["data"];
           if (data.length > 0) {
+            List<Marker> dataMapArray = [];
             usersData.value = data;
+            for (var i = 0; i < data.length; i++) {
+              Map valueMap = json.decode(data[i]["icon_color"]);
+              dataMapArray.add(
+                Marker(
+                  point: LatLng(
+                    data[i]["lat"],
+                    data[i]["long"],
+                  ),
+                  width: markerSize.value,
+                  height: markerSize.value,
+                  alignment: Alignment.center,
+                  child: Icon(
+                    Icons.circle_sharp,
+                    size: markerSize.value,
+                    color: Color.fromARGB(
+                      255,
+                      valueMap["red"],
+                      valueMap["green"],
+                      valueMap["blue"],
+                    ),
+                  ),
+                ),
+              );
+            }
+            updateMapData(dataMapArray);
           }
         });
 
