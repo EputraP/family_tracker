@@ -31,16 +31,12 @@ class FlutterMapWidgetController extends GetxController {
   void onInit() async {
     super.onInit();
 
-    print("init overview");
-
     await UserLocationProvider()
         .getUserLocationData(userAuthController.refreshToken.value)
         .then((response) {
       var data = response.body["data"];
       if (data.length > 0) {
         usersData.value = data;
-        print("data user location len: ${data.length}");
-        print("data user location: ${data}");
       }
     });
     updateMapData(tag == "Overview"
@@ -92,12 +88,9 @@ class FlutterMapWidgetController extends GetxController {
           var data = response.body["data"];
           if (data.length > 0) {
             usersData.value = data;
-            print("data user location len: ${data.length}");
-            print("data user location: ${data}");
           }
         });
 
-        print("me val: ${count.value}");
         if (stop.value) timer.cancel();
       },
     );
