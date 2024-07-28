@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:family_tracker/controllers/user_auth_controller.dart';
+import 'package:family_tracker/providers/user_location_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
@@ -11,14 +13,14 @@ class FlutterMapWidgetController extends GetxController {
   var currentCenter = const LatLng(-7.392946540801525, 109.94206283417289).obs;
   var mapData = Rx<List<Marker>>([]);
   var mapController = MapController();
+  var usersData = [].obs;
   var count = 0.obs;
   var stop = false.obs;
   var currentLocation =
       const LatLng(-7.392946540801525, 109.94206283417289).obs;
+  final userAuthController = Get.find<UserAuthController>();
 
   FlutterMapWidgetController(this.tag);
-
-  // void changeScreenVal(val) => tag.value = val;
 
   void updateMarkerSize(double zoom) =>
       markerSize.value = 10.0 * (zoom / currentZoom.value);
@@ -26,8 +28,21 @@ class FlutterMapWidgetController extends GetxController {
   void updateMapData(List<Marker> data) => mapData.value = data;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+
+    print("init overview");
+
+    await UserLocationProvider()
+        .getUserLocationData(userAuthController.refreshToken.value)
+        .then((response) {
+      var data = response.body["data"];
+      if (data.length > 0) {
+        usersData.value = data;
+        print("data user location len: ${data.length}");
+        print("data user location: ${data}");
+      }
+    });
     updateMapData(tag == "Overview"
         ? [
             Marker(
@@ -67,14 +82,25 @@ class FlutterMapWidgetController extends GetxController {
             )
           ]);
     stop.value = false;
-    // final LocationController locationController = Get.put(LocationController());
-    // Get.find<LocationController>(tag: "Overview");
-    Timer.periodic(const Duration(seconds: 5), (timer) {
-      // count++;
-      print("me val: ${count.value}");
-      // LocationService.instance.getUserLocation(controller: locationController);
-      if (stop.value) timer.cancel();
-    });
+
+    Timer.periodic(
+      const Duration(seconds: 10),
+      (timer) async {
+        await UserLocationProvider()
+            .getUserLocationData(userAuthController.refreshToken.value)
+            .then((response) {
+          var data = response.body["data"];
+          if (data.length > 0) {
+            usersData.value = data;
+            print("data user location len: ${data.length}");
+            print("data user location: ${data}");
+          }
+        });
+
+        print("me val: ${count.value}");
+        if (stop.value) timer.cancel();
+      },
+    );
   }
 
   @override
