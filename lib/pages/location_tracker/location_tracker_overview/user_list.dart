@@ -11,7 +11,6 @@ class UserList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 85,
-        color: Color.fromARGB(255, 55, 58, 227),
         child: Scrollbar(
           child: ListView.separated(
             itemCount: data.length,
@@ -23,20 +22,17 @@ class UserList extends StatelessWidget {
             itemBuilder: (BuildContext ctx, int i) {
               Map valueMap = json.decode(data[i]["icon_color"]);
 
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: UserListTile(
-                  userName: data[i]["username"],
-                  address: data[i]["address"],
-                  sosVis: data[i]["is_sos"] == "0" ? false : true,
-                  iconColor: {
-                    "red": valueMap["red"],
-                    "green": valueMap["green"],
-                    "blue": valueMap["blue"]
-                  },
-                  isOnline: data[i]["is_online"] == "0" ? false : true,
-                  statusName: data[i]["status_name"],
-                ),
+              return UserListTile(
+                userName: data[i]["username"],
+                address: data[i]["address"],
+                sosVis: data[i]["is_sos"] == "0" ? false : true,
+                iconColor: {
+                  "red": valueMap["red"],
+                  "green": valueMap["green"],
+                  "blue": valueMap["blue"]
+                },
+                isOnline: data[i]["is_online"] == "0" ? false : true,
+                statusName: data[i]["status_name"],
               );
             },
           ),

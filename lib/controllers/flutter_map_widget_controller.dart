@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:family_tracker/controllers/user_auth_controller.dart';
 import 'package:family_tracker/providers/user_location_provider.dart';
 import 'package:flutter/material.dart';
@@ -36,47 +37,38 @@ class FlutterMapWidgetController extends GetxController {
         .then((response) {
       var data = response.body["data"];
       if (data.length > 0) {
+        List<Marker> dataMapArray = [];
+
         usersData.value = data;
-      }
-    });
-    updateMapData(tag == "Overview"
-        ? [
+
+        for (var i = 0; i < data.length; i++) {
+          Map valueMap = json.decode(data[i]["icon_color"]);
+          dataMapArray.add(
             Marker(
-              point: LatLng(-6.955470354750406, 107.70999737725637),
+              point: LatLng(
+                data[i]["lat"],
+                data[i]["long"],
+              ),
               width: markerSize.value,
               height: markerSize.value,
               alignment: Alignment.center,
               child: Icon(
                 Icons.circle_sharp,
                 size: markerSize.value,
-                color: Colors.blue,
+                color: Color.fromARGB(
+                  255,
+                  valueMap["red"],
+                  valueMap["green"],
+                  valueMap["blue"],
+                ),
               ),
             ),
-            Marker(
-              point: const LatLng(-7.796192410193114, 110.37038175433241),
-              width: markerSize.value,
-              height: markerSize.value,
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.circle_sharp,
-                size: markerSize.value,
-                color: Colors.red,
-              ),
-            )
-          ]
-        : [
-            Marker(
-              point: const LatLng(-7.796192410193114, 110.37038175433241),
-              width: markerSize.value,
-              height: markerSize.value,
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.circle_sharp,
-                size: markerSize.value,
-                color: Colors.red,
-              ),
-            )
-          ]);
+          );
+        }
+        updateMapData(dataMapArray);
+      }
+    });
+
     stop.value = false;
 
     Timer.periodic(
