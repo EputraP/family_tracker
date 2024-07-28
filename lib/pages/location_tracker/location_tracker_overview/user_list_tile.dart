@@ -5,23 +5,42 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserListTile extends StatelessWidget {
-  const UserListTile({super.key});
+  UserListTile(
+      {super.key,
+      required this.userName,
+      required this.address,
+      required this.sosVis,
+      required this.iconColor,
+      required this.isOnline,
+      required this.statusName});
+  final String userName;
+  final String address;
+  final bool sosVis;
+  final Map<dynamic, int> iconColor;
+  final bool isOnline;
+  final String statusName;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
         width: 220,
-        color: ColorsCollection.locationTrackerOnline,
+        color: isOnline
+            ? ColorsCollection.locationTrackerOnline
+            : ColorsCollection.locationTrackerOffline,
         child: Row(
           children: [
             Container(
               width: 65,
-              // color: Colors.red,
-              child: const Icon(
+              child: Icon(
                 Icons.circle_sharp,
                 size: 30,
-                color: Colors.blue,
+                color: Color.fromARGB(
+                  255,
+                  iconColor["red"] ?? 0,
+                  iconColor["green"] ?? 0,
+                  iconColor["blue"] ?? 0,
+                ),
               ),
             ),
             const VerticalDivider(
@@ -34,8 +53,8 @@ class UserListTile extends StatelessWidget {
                   padding: const EdgeInsets.all(5.0),
                   child: Stack(
                     children: [
-                      const Visibility(
-                        visible: true,
+                      Visibility(
+                        visible: sosVis,
                         child: Positioned(
                             right: 0,
                             top: 0,
@@ -49,8 +68,8 @@ class UserListTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            "Eka",
+                          Text(
+                            userName[0].toUpperCase() + userName.substring(1),
                             style: TextStyle(fontSize: 12, color: Colors.white),
                           ),
                           const SizedBox(
@@ -61,10 +80,13 @@ class UserListTile extends StatelessWidget {
                             child: Container(
                               height: 18,
                               width: 60,
-                              color: ColorsCollection.locationTrackerMoving,
-                              child: const Center(
+                              color: statusName == "idle"
+                                  ? ColorsCollection.locationTrackerIdle
+                                  : ColorsCollection.locationTrackerMoving,
+                              child: Center(
                                 child: Text(
-                                  "Moving",
+                                  statusName[0].toUpperCase() +
+                                      statusName.substring(1),
                                   style: TextStyle(
                                       fontSize: 12, color: Colors.white),
                                   overflow: TextOverflow.ellipsis,
@@ -75,8 +97,8 @@ class UserListTile extends StatelessWidget {
                           const SizedBox(
                             height: 3,
                           ),
-                          const Text(
-                            "Jl.oilenfoiwefoinweoifnowiefn",
+                          Text(
+                            address,
                             style: TextStyle(fontSize: 12, color: Colors.white),
                             overflow: TextOverflow.ellipsis,
                           )
