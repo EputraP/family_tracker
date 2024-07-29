@@ -29,7 +29,7 @@ class LocationController extends GetxController {
                 (userLocation.value?.longitude).toString(),
                 userAuthController.refreshToken.value)
             .then((value) {
-          var data = value.body["data"] as Map<String, dynamic>;
+          var _ = value.body["data"] as Map<String, dynamic>;
         });
       }
     });
