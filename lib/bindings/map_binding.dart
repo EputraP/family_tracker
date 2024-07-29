@@ -15,6 +15,5 @@ class MapBindingDetail implements Bindings {
   void dependencies() {
     Get.put(FlutterMapWidgetController("Detail"), tag: "Detail");
     Get.put(DraggableBottomSheetController());
-    Get.put(SelectedUserLocationController());
   }
 }
