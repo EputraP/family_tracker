@@ -11,7 +11,7 @@ class LocationTrackerDetails extends StatelessWidget {
   LocationTrackerDetails({super.key});
   final mapCDetail = Get.find<FlutterMapWidgetController>(tag: "Detail");
   final selectedLocationC = Get.find<SelectedUserLocationController>();
-  dynamic userId = Get.arguments;
+  final dynamic userId = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
