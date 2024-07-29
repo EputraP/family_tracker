@@ -51,9 +51,7 @@ class FabCircularMenu extends StatelessWidget {
             Icons.person,
             color: Colors.white,
           ),
-          onClick: () {
-            print('Second button');
-          },
+          onClick: () {},
         ),
         CircularButton(
           color: Colors.black,
@@ -63,9 +61,7 @@ class FabCircularMenu extends StatelessWidget {
             Icons.person_add,
             color: Colors.white,
           ),
-          onClick: () {
-            print('Second button');
-          },
+          onClick: () {},
         ),
       ],
     );
