@@ -37,48 +37,9 @@ class FlutterMapWidgetController extends GetxController {
   void onInit() async {
     super.onInit();
     if (tag == "Overview") {
-      await UserLocationProvider()
-          .getUserLocationData(userAuthController.refreshToken.value)
-          .then((response) {
-        var data = response.body["data"];
-        if (data.length > 0) {
-          List<Marker> dataMapArray = [];
-
-          usersData.value = data;
-
-          for (var i = 0; i < data.length; i++) {
-            Map valueMap = json.decode(data[i]["icon_color"]);
-            dataMapArray.add(
-              Marker(
-                point: LatLng(
-                  data[i]["lat"],
-                  data[i]["long"],
-                ),
-                width: markerSize.value,
-                height: markerSize.value,
-                alignment: Alignment.center,
-                child: Icon(
-                  Icons.circle_sharp,
-                  size: markerSize.value,
-                  color: Color.fromARGB(
-                    255,
-                    valueMap["red"],
-                    valueMap["green"],
-                    valueMap["blue"],
-                  ),
-                ),
-              ),
-            );
-          }
-          updateMapData(dataMapArray);
-          isMapDataLoading.value = false;
-        }
-      }).catchError((e) {
-        SnackBar(
-          content:
-              const Text("Error fetching data, try to load the page again"),
-        );
-      });
+      await getDataUserLocation();
+    } else if (tag == "Detail") {
+      await getDataSelectedUserLocation();
     }
     stop.value = false;
 
@@ -86,46 +47,9 @@ class FlutterMapWidgetController extends GetxController {
       const Duration(seconds: 10),
       (timer) async {
         if (tag == "Overview") {
-          await UserLocationProvider()
-              .getUserLocationData(userAuthController.refreshToken.value)
-              .then((response) {
-            var data = response.body["data"];
-            if (data.length > 0) {
-              List<Marker> dataMapArray = [];
-              usersData.value = data;
-              for (var i = 0; i < data.length; i++) {
-                Map valueMap = json.decode(data[i]["icon_color"]);
-                dataMapArray.add(
-                  Marker(
-                    point: LatLng(
-                      data[i]["lat"],
-                      data[i]["long"],
-                    ),
-                    width: markerSize.value,
-                    height: markerSize.value,
-                    alignment: Alignment.center,
-                    child: Icon(
-                      Icons.circle_sharp,
-                      size: markerSize.value,
-                      color: Color.fromARGB(
-                        255,
-                        valueMap["red"],
-                        valueMap["green"],
-                        valueMap["blue"],
-                      ),
-                    ),
-                  ),
-                );
-              }
-              updateMapData(dataMapArray);
-            }
-          });
+          await getDataUserLocation();
         } else if (tag == "Detail") {
-          await UserLocationProvider()
-              .getUserLocationDataByUserId(
-                  userAuthController.refreshToken.value,
-                  selectedUserId.value.toString())
-              .then((response) {});
+          await getDataSelectedUserLocation();
         }
 
         if (stop.value) timer.cancel();
@@ -137,5 +61,84 @@ class FlutterMapWidgetController extends GetxController {
   void onClose() {
     super.onClose();
     stop.value = true;
+  }
+
+  Future<void> getDataUserLocation() async {
+    await UserLocationProvider()
+        .getUserLocationData(userAuthController.refreshToken.value)
+        .then((response) {
+      var data = response.body["data"];
+      if (data.length > 0) {
+        List<Marker> dataMapArray = [];
+
+        usersData.value = data;
+
+        for (var i = 0; i < data.length; i++) {
+          Map valueMap = json.decode(data[i]["icon_color"]);
+          dataMapArray.add(
+            Marker(
+              point: LatLng(
+                data[i]["lat"],
+                data[i]["long"],
+              ),
+              width: markerSize.value,
+              height: markerSize.value,
+              alignment: Alignment.center,
+              child: Icon(
+                Icons.circle_sharp,
+                size: markerSize.value,
+                color: Color.fromARGB(
+                  255,
+                  valueMap["red"],
+                  valueMap["green"],
+                  valueMap["blue"],
+                ),
+              ),
+            ),
+          );
+        }
+        updateMapData(dataMapArray);
+        isMapDataLoading.value = false;
+      }
+    }).catchError((e) {
+      SnackBar(
+        content: const Text("Error fetching data, try to load the page again"),
+      );
+    });
+  }
+
+  Future<void> getDataSelectedUserLocation() async {
+    await UserLocationProvider()
+        .getUserLocationDataByUserId(userAuthController.refreshToken.value,
+            selectedUserId.value.toString())
+        .then((response) {
+      var data = response.body["data"];
+      userSelectedData.value = data;
+
+      if (data.length > 0) {
+        Map valueMap = json.decode(data["icon_color"]);
+        updateMapData([
+          Marker(
+            point: LatLng(
+              data["lat"],
+              data["long"],
+            ),
+            width: markerSize.value,
+            height: markerSize.value,
+            alignment: Alignment.center,
+            child: Icon(
+              Icons.circle_sharp,
+              size: markerSize.value,
+              color: Color.fromARGB(
+                255,
+                valueMap["red"],
+                valueMap["green"],
+                valueMap["blue"],
+              ),
+            ),
+          ),
+        ]);
+      }
+    });
   }
 }
