@@ -10,6 +10,8 @@ class UserDataContainer extends StatelessWidget {
   final double maxChildSize;
   @override
   Widget build(BuildContext context) {
+    var data = mapCDetail.userSelectedData;
+    print("data detail: ${data}");
     return Expanded(
         child: Obx(
       () => Container(
@@ -21,7 +23,7 @@ class UserDataContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${mapCDetail.selectedUserId.value}",
+                "${data["username"][0].toUpperCase() + data["username"].substring(1)}",
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
               const SizedBox(
@@ -45,8 +47,8 @@ class UserDataContainer extends StatelessWidget {
               const SizedBox(
                 height: 3,
               ),
-              const Text(
-                "Jl.oilenfoiwefoinweoifnowiefn",
+              Text(
+                "${data["display_name"]}",
                 style: TextStyle(fontSize: 14, color: Colors.white),
                 overflow: TextOverflow.ellipsis,
               )

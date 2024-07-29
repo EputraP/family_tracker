@@ -49,7 +49,12 @@ class FlutterMapWidgetController extends GetxController {
         if (tag == "Overview") {
           await getDataUserLocation();
         } else if (tag == "Detail") {
-          await getDataSelectedUserLocation();
+          while (true) {
+            if (selectedUserId.value != 0) {
+              await getDataSelectedUserLocation();
+              break;
+            }
+          }
         }
 
         if (stop.value) timer.cancel();
@@ -108,37 +113,40 @@ class FlutterMapWidgetController extends GetxController {
   }
 
   Future<void> getDataSelectedUserLocation() async {
-    await UserLocationProvider()
-        .getUserLocationDataByUserId(userAuthController.refreshToken.value,
-            selectedUserId.value.toString())
-        .then((response) {
-      var data = response.body["data"];
-      userSelectedData.value = data;
+    if (selectedUserId.value != 0) {
+      await UserLocationProvider()
+          .getUserLocationDataByUserId(userAuthController.refreshToken.value,
+              selectedUserId.value.toString())
+          .then((response) {
+        var data = response.body["data"];
 
-      if (data.length > 0) {
-        Map valueMap = json.decode(data["icon_color"]);
-        updateMapData([
-          Marker(
-            point: LatLng(
-              data["lat"],
-              data["long"],
-            ),
-            width: markerSize.value,
-            height: markerSize.value,
-            alignment: Alignment.center,
-            child: Icon(
-              Icons.circle_sharp,
-              size: markerSize.value,
-              color: Color.fromARGB(
-                255,
-                valueMap["red"],
-                valueMap["green"],
-                valueMap["blue"],
+        userSelectedData.value = data;
+
+        if (data.length > 0) {
+          Map valueMap = json.decode(data["icon_color"]);
+          updateMapData([
+            Marker(
+              point: LatLng(
+                data["lat"],
+                data["long"],
+              ),
+              width: markerSize.value,
+              height: markerSize.value,
+              alignment: Alignment.center,
+              child: Icon(
+                Icons.circle_sharp,
+                size: markerSize.value,
+                color: Color.fromARGB(
+                  255,
+                  valueMap["red"],
+                  valueMap["green"],
+                  valueMap["blue"],
+                ),
               ),
             ),
-          ),
-        ]);
-      }
-    });
+          ]);
+        }
+      });
+    }
   }
 }
