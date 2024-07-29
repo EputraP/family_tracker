@@ -22,7 +22,7 @@ class LocationTrackerOverview extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 UserList(
-                  data: mapCOverview.usersData.value,
+                  data: mapCOverview.usersData,
                   isLoading: mapCOverview.isMapDataLoading.value,
                 ),
                 const SizedBox(
