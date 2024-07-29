@@ -1,7 +1,5 @@
 import 'package:family_tracker/constans/icon_collection.dart';
-import 'package:family_tracker/routes/app_url.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class UserListTileSkeleton extends StatelessWidget {
   UserListTileSkeleton({super.key});
