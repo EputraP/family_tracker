@@ -1,12 +1,12 @@
+import 'package:family_tracker/controllers/flutter_map_widget_controller.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/controllers/draggable_bottom_sheet_controller.dart';
-import 'package:family_tracker/pages/location_tracker/location_tracker_details/controllers/selected_user_location_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserDataContainer extends StatelessWidget {
   UserDataContainer({super.key, required this.maxChildSize});
   final draggableBottomC = Get.find<DraggableBottomSheetController>();
-  final selectedLocationC = Get.find<SelectedUserLocationController>();
+  final mapCDetail = Get.find<FlutterMapWidgetController>(tag: "Detail");
   final double maxChildSize;
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class UserDataContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${selectedLocationC.id.value}",
+                "${mapCDetail.selectedUserId.value}",
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
               const SizedBox(
