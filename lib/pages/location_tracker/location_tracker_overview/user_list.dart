@@ -27,6 +27,7 @@ class UserList extends StatelessWidget {
                     Map valueMap = json.decode(data[i]["icon_color"]);
 
                     return UserListTile(
+                      userId: data[i]["user_id"],
                       userName: data[i]["username"],
                       address: data[i]["address"],
                       sosVis: data[i]["is_sos"] == "0" ? false : true,

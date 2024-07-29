@@ -1,15 +1,18 @@
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/controllers/draggable_bottom_sheet_controller.dart';
+import 'package:family_tracker/pages/location_tracker/location_tracker_details/controllers/selected_user_location_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserDataContainer extends StatelessWidget {
   UserDataContainer({super.key, required this.maxChildSize});
   final draggableBottomC = Get.find<DraggableBottomSheetController>();
+  final selectedLocationC = Get.find<SelectedUserLocationController>();
   final double maxChildSize;
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+        child: Obx(
+      () => Container(
         height: draggableBottomC.widgetHeight.value * maxChildSize - 60,
         child: Padding(
           padding:
@@ -18,7 +21,7 @@ class UserDataContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Putra",
+                "${selectedLocationC.id.value}",
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
               const SizedBox(
@@ -51,6 +54,6 @@ class UserDataContainer extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

@@ -7,12 +7,14 @@ import 'package:get/get.dart';
 class UserListTile extends StatelessWidget {
   UserListTile(
       {super.key,
+      required this.userId,
       required this.userName,
       required this.address,
       required this.sosVis,
       required this.iconColor,
       required this.isOnline,
       required this.statusName});
+  final int userId;
   final String userName;
   final String address;
   final bool sosVis;
@@ -111,7 +113,8 @@ class UserListTile extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Get.toNamed(LocationTrackerNavigation.locationDetail);
+        Get.toNamed(LocationTrackerNavigation.locationDetail,
+            arguments: {"userId": userId.toString()});
       },
     );
   }

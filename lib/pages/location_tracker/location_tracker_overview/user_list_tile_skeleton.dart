@@ -81,9 +81,6 @@ class UserListTileSkeleton extends StatelessWidget {
           ],
         ),
       ),
-      onTap: () {
-        Get.toNamed(LocationTrackerNavigation.locationDetail);
-      },
     );
   }
 }

@@ -30,7 +30,6 @@ class LocationController extends GetxController {
                 userAuthController.refreshToken.value)
             .then((value) {
           var data = value.body["data"] as Map<String, dynamic>;
-          print(data);
         });
       }
     });
