@@ -69,6 +69,10 @@ class FlutterMapWidgetController extends GetxController {
         updateMapData(dataMapArray);
         isMapDataLoading.value = false;
       }
+    }).catchError((e) {
+      SnackBar(
+        content: const Text("Error fetching data, try to load the page again"),
+      );
     });
 
     stop.value = false;
