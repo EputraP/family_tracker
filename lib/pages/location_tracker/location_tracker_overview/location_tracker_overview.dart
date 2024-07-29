@@ -21,7 +21,9 @@ class LocationTrackerOverview extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                UserList(data: mapCOverview.usersData.value),
+                mapCOverview.isMapDataLoading.value
+                    ? Text("Loading")
+                    : UserList(data: mapCOverview.usersData.value),
                 const SizedBox(
                   height: 20,
                 ),

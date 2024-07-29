@@ -17,6 +17,7 @@ class FlutterMapWidgetController extends GetxController {
   var usersData = [].obs;
   var count = 0.obs;
   var stop = false.obs;
+  var isMapDataLoading = true.obs;
   var currentLocation =
       const LatLng(-7.392946540801525, 109.94206283417289).obs;
   final userAuthController = Get.find<UserAuthController>();
@@ -66,6 +67,7 @@ class FlutterMapWidgetController extends GetxController {
           );
         }
         updateMapData(dataMapArray);
+        isMapDataLoading.value = false;
       }
     });
 
