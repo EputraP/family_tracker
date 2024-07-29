@@ -18,4 +18,13 @@ class UserLocationProvider extends GetConnect {
       'Authorization': 'Bearer $token', //carrier
     });
   }
+
+  Future<Response> getUserLocationDataByUserId(
+      String token, String userId) async {
+    return await get('${ApiConstant.userLocation}/users-location/${userId}',
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token', //carrier
+        });
+  }
 }
