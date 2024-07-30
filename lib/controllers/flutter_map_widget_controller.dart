@@ -19,6 +19,7 @@ class FlutterMapWidgetController extends GetxController {
   var count = 0.obs;
   var stop = false.obs;
   var isMapDataLoading = true.obs;
+  var isMapDetailLoading = true.obs;
   var currentLocation =
       const LatLng(-7.392946540801525, 109.94206283417289).obs;
   final userAuthController = Get.find<UserAuthController>();
@@ -38,9 +39,20 @@ class FlutterMapWidgetController extends GetxController {
     super.onInit();
     if (tag == "Overview") {
       await getDataUserLocation();
+      isMapDataLoading.value = false;
     } else if (tag == "Detail") {
-      await getDataSelectedUserLocation();
+      Timer.periodic(
+        const Duration(seconds: 1),
+        (timer) async {
+          if (selectedUserId.value != 0) {
+            await getDataSelectedUserLocation();
+            isMapDetailLoading.value = false;
+            timer.cancel();
+          }
+        },
+      );
     }
+
     stop.value = false;
 
     Timer.periodic(
@@ -49,12 +61,7 @@ class FlutterMapWidgetController extends GetxController {
         if (tag == "Overview") {
           await getDataUserLocation();
         } else if (tag == "Detail") {
-          while (true) {
-            if (selectedUserId.value != 0) {
-              await getDataSelectedUserLocation();
-              break;
-            }
-          }
+          await getDataSelectedUserLocation();
         }
 
         if (stop.value) timer.cancel();
@@ -103,7 +110,6 @@ class FlutterMapWidgetController extends GetxController {
           );
         }
         updateMapData(dataMapArray);
-        isMapDataLoading.value = false;
       }
     }).catchError((e) {
       SnackBar(
