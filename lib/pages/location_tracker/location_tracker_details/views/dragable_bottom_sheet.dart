@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DraggableBottomSheet extends StatelessWidget {
-  DraggableBottomSheet({super.key});
+  DraggableBottomSheet({super.key, required this.data});
 
+  final Map<dynamic, dynamic> data;
   final draggableBottomC = Get.find<DraggableBottomSheetController>();
   final sheet = GlobalKey();
   final maxChildSize = 0.2;
