@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FloatingButtonPositioned extends StatelessWidget {
-  FloatingButtonPositioned({super.key});
+  FloatingButtonPositioned(
+      {super.key, required this.userId, required this.isSos});
+  final int userId;
+  final String isSos;
 
   final dragableBottomSheetC = Get.find<DraggableBottomSheetController>();
 
@@ -17,7 +20,6 @@ class FloatingButtonPositioned extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Row(
-              // mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 FloatingActionButton(
@@ -35,11 +37,12 @@ class FloatingButtonPositioned extends StatelessWidget {
                     Visibility(
                       visible: true,
                       child: FloatingActionButton(
-                        backgroundColor: false ? Colors.red : Colors.white,
+                        backgroundColor:
+                            isSos != "0" ? Colors.red : Colors.white,
                         onPressed: () => print('Add'),
-                        child: const Icon(
+                        child: Icon(
                           IconCollection.sosIcon,
-                          color: false ? Colors.white : Colors.red,
+                          color: isSos != "0" ? Colors.white : Colors.red,
                         ),
                       ),
                     ),
