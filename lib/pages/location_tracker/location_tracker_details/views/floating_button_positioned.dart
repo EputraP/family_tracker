@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FloatingButtonPositioned extends StatelessWidget {
-  FloatingButtonPositioned(
-      {super.key, required this.userId, required this.isSos});
-  final int userId;
-  final String isSos;
+  FloatingButtonPositioned({
+    super.key,
+  });
+  late int userId;
+  late String isSos = "0";
 
   final dragableBottomSheetC = Get.find<DraggableBottomSheetController>();
 

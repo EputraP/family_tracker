@@ -93,7 +93,9 @@ class DraggableBottomSheet extends StatelessWidget {
                                           color: Colors.grey,
                                         ),
                                         UserDataContainer(
-                                            maxChildSize: maxChildSize)
+                                          maxChildSize: maxChildSize,
+                                          data: data,
+                                        )
                                       ],
                                     ),
                                   ],

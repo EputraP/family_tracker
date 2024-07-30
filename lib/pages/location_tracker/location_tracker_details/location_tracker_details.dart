@@ -5,6 +5,7 @@ import 'package:family_tracker/pages/location_tracker/location_tracker_details/v
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/views/floating_button_positioned.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LocationTrackerDetails extends StatelessWidget {
   LocationTrackerDetails({super.key});
@@ -22,10 +23,18 @@ class LocationTrackerDetails extends StatelessWidget {
         children: [
           FlutterMapWidget(mapC: mapCDetail),
           FloatingButtonPositioned(
-            userId: data["user_id"],
-            isSos: data["is_sos"],
-          ),
-          DraggableBottomSheet(data: data)
+              // userId: 12,
+              // isSos: data["is_sos"],
+              ),
+          DraggableBottomSheet(data: data),
+          Visibility(
+              visible: true,
+              child: SizedBox.expand(
+                child: Container(
+                    color: const Color.fromARGB(150, 212, 212, 212),
+                    child: LoadingAnimationWidget.fourRotatingDots(
+                        color: Colors.white, size: 100)),
+              )),
         ],
       ),
     );

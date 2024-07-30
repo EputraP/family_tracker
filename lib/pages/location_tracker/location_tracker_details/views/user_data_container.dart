@@ -1,16 +1,15 @@
-import 'package:family_tracker/controllers/flutter_map_widget_controller.dart';
 import 'package:family_tracker/pages/location_tracker/location_tracker_details/controllers/draggable_bottom_sheet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserDataContainer extends StatelessWidget {
-  UserDataContainer({super.key, required this.maxChildSize});
+  UserDataContainer(
+      {super.key, required this.maxChildSize, required this.data});
   final draggableBottomC = Get.find<DraggableBottomSheetController>();
-  final mapCDetail = Get.find<FlutterMapWidgetController>(tag: "Detail");
+  final Map<dynamic, dynamic> data;
   final double maxChildSize;
   @override
   Widget build(BuildContext context) {
-    var data = mapCDetail.userSelectedData;
     print("data detail: ${data}");
     return Expanded(
         child: Obx(
