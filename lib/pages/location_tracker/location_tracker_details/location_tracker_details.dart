@@ -15,7 +15,7 @@ class LocationTrackerDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     mapCDetail.updateUserId(int.parse(userId["userId"]));
     var data = mapCDetail.userSelectedData;
-    print("data detail: ${data}");
+
     return Scaffold(
       backgroundColor: ColorsCollection.locationTrackerColor,
       body: Stack(
