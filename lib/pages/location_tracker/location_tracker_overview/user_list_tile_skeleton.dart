@@ -9,7 +9,7 @@ class UserListTileSkeleton extends StatelessWidget {
     return InkWell(
       child: Container(
         width: 220,
-        color: const Color.fromARGB(255, 228, 228, 228),
+        color: Color.fromARGB(200, 203, 201, 201),
         child: Row(
           children: [
             Container(
@@ -46,7 +46,7 @@ class UserListTileSkeleton extends StatelessWidget {
                             child: Container(
                               height: 18,
                               width: 150,
-                              color: Colors.white,
+                              color: const Color.fromARGB(200, 255, 255, 255),
                             ),
                           ),
                           const SizedBox(
@@ -57,7 +57,7 @@ class UserListTileSkeleton extends StatelessWidget {
                             child: Container(
                               height: 18,
                               width: 150,
-                              color: Colors.white,
+                              color: const Color.fromARGB(200, 255, 255, 255),
                             ),
                           ),
                           const SizedBox(
@@ -68,7 +68,7 @@ class UserListTileSkeleton extends StatelessWidget {
                             child: Container(
                               height: 18,
                               width: 150,
-                              color: Colors.white,
+                              color: const Color.fromARGB(200, 255, 255, 255),
                             ),
                           ),
                         ],
